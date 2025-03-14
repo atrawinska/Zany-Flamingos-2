@@ -24,5 +24,14 @@ build_property.EnableCodeStyleSeverity =
 [C:/Users/Agnie/Downloads/lab2aoop/e_learning_application/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/Agnie/Downloads/lab2aoop/e_learning_application/Views/InsideViews/MainInsideView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Agnie/Downloads/lab2aoop/e_learning_application/Views/InsideViews/StudentViews/StudentInsideView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Agnie/Downloads/lab2aoop/e_learning_application/Views/InsideViews/TeacherViews/TeacherInsideView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/Agnie/Downloads/lab2aoop/e_learning_application/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
