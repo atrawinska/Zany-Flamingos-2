@@ -8,20 +8,42 @@
             x:Class="e_learning_application.Views.MainInsideView"
                     >
 
- <StackPanel Background="White">
-    <DockPanel Height="60" LastChildFill="True">
+ <StackPanel >
+    <DockPanel Height="60" LastChildFill="True" Background="White">
 
         <!-- Create a StackPanel to align the elements horizontally in one line -->
             <!-- First Button -->
-            <Button Padding="30,20,30,20" VerticalAlignment="Stretch" Content="Courses"  HorizontalAlignment="Left" Foreground="Black" Background="#00FFFFFF"  BorderThickness="0"/>
+            <Button FontSize="20" Padding="30,0,30,0" VerticalAlignment="Stretch" Content="Courses"  HorizontalAlignment="Left" Foreground="Black" Background="#00FFFFFF"  BorderThickness="0"/>
                     <!-- Second Button -->
-            <Button Padding="30,20,30,20" VerticalAlignment="Stretch" Content="Profile" DockPanel.Dock="Right"  HorizontalAlignment="Right" Foreground="Black" Background="#00FFFFFF"  BorderThickness="0"/>
+            <Button FontSize="20" Padding="30,0,30,0" VerticalAlignment="Stretch" Content="Profile" DockPanel.Dock="Right"  HorizontalAlignment="Right" Foreground="Black" Background="#00FFFFFF"  BorderThickness="0"/>
    
             <!-- TextBlock in the center -->
-            <TextBlock  Text="Role" VerticalAlignment="Center" DockPanel.Dock="Right"  HorizontalAlignment="Right"  Foreground="Black" Margin="30,10,30,10"/>
+            <TextBlock FontSize="20" Text="Role" VerticalAlignment="Center" DockPanel.Dock="Right"  HorizontalAlignment="Right"  Foreground="Black" Margin="30,10,30,10"/>
 
 
     </DockPanel>
+
+<StackPanel Orientation="Horizontal" > 
+
+
+<ListBox Margin="30" FontSize="20" Padding="15,10,15, 10" >
+    <ListBoxItem>Item 1</ListBoxItem>
+    <ListBoxItem>Item 2</ListBoxItem>
+    <ListBoxItem>Item 3</ListBoxItem>
+</ListBox>
+
+<ListBox Margin="30" FontSize="20"  Padding="15,10,15, 10">
+    <ListBoxItem>Item 1</ListBoxItem>
+    <ListBoxItem>Item 2</ListBoxItem>
+    <ListBoxItem>Item 3</ListBoxItem>
+</ListBox>
+        
+
+
+
+        
+</StackPanel>
+
 
            
                 
