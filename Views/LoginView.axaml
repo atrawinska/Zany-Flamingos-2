@@ -7,8 +7,8 @@
             x:DataType="vm:LoginViewModel"
             x:Class="e_learning_application.Views.LoginView">
     <StackPanel>
-        <TextBox Text="{Binding Username}" PlaceholderText="Username"/>
-        <TextBox Text="{Binding Password}" PlaceholderText="Password" PasswordChar="*"/>
+        <TextBox Text="{Binding Username}" Watermark="Username"/>
+        <TextBox Text="{Binding Password}" Watermark="Password" PasswordChar="*"/>
         <Button Content="Login" Command="{Binding LoginCommand}"/>
     </StackPanel>
 </UserControl>
