@@ -5,6 +5,7 @@ namespace e_learning_application.ViewModels
 {
     public partial class RoleSelectionViewModel : ObservableObject
     {
+        
         public IRelayCommand SelectStudentCommand { get; }
         public IRelayCommand SelectTeacherCommand { get; }
 

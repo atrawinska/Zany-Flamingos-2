@@ -12,12 +12,26 @@
         <SolidColorBrush Color="rgb(238, 223, 228)"/>
     </Window.Background>
 
+    <Window.Styles>
+        <!-- Universal style for all buttons -->
+        <Style Selector="Button">
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Padding" Value="30,15,30,15"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+    </Window.Styles>
+
+
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
-    <StackPanel>
-        <ContentControl Content="{Binding CurrentView}"/>
-    </StackPanel>
-    
+<DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <!-- Center content in DockPanel -->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ContentControl Content="{Binding CurrentView}"/>
+        </StackPanel>
+    </DockPanel>
 </Window>
