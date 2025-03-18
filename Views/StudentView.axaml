@@ -1,0 +1,49 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Class="e_learning_application.Views.StudentView"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+          x:DataType="vm:StudentViewModel"
+            xmlns:vm="using:e_learning_application.ViewModels"
+     
+             
+
+                    >
+
+ <StackPanel >
+    <DockPanel Height="60" LastChildFill="True" Background="White" VerticalAlignment="Stretch">
+
+        <!-- Create a StackPanel to align the elements horizontally in one line -->
+            <!-- First Button -->
+            <Button FontSize="20" Padding="30,0,30,0" VerticalAlignment="Stretch" Content="Courses"  HorizontalAlignment="Left" Foreground="Black" Background="#00FFFFFF"  BorderThickness="0"/>
+                    <!-- Second Button -->
+            <Button FontSize="20" Padding="30,0,30,0" VerticalAlignment="Stretch" Content="Profile" DockPanel.Dock="Right"  HorizontalAlignment="Right" Foreground="Black" Background="#00FFFFFF"  BorderThickness="0"/>
+   
+            <!-- TextBlock in the center -->
+            <TextBlock FontSize="20" Text="{Binding Role}" VerticalAlignment="Center" DockPanel.Dock="Right"  HorizontalAlignment="Right"  Foreground="Black" Margin="30,10,30,10"/>
+
+
+    </DockPanel>
+
+<StackPanel Orientation="Horizontal" > 
+
+
+<ListBox Margin="30" FontSize="20" Padding="15,10,15, 10"  ItemsSource="{Binding Subjects}" />
+
+
+
+<ListBox Margin="30" FontSize="20"  Padding="15,10,15, 10" ItemsSource="{Binding EnrolledSubjects}" />
+        
+
+
+
+        
+</StackPanel>
+
+
+           
+                
+                
+            </StackPanel>
+</UserControl>

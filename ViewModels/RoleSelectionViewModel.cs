@@ -1,28 +1,28 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
+
 namespace e_learning_application.ViewModels
 {
     public partial class RoleSelectionViewModel : ObservableObject
     {
-        
-        public IRelayCommand SelectStudentCommand { get; }
-        public IRelayCommand SelectTeacherCommand { get; }
+        private readonly MainWindowViewModel _mainViewModel;
 
-        public RoleSelectionViewModel()
+        public RoleSelectionViewModel(MainWindowViewModel mainViewModel)
         {
-            SelectStudentCommand = new RelayCommand(SelectStudent);
-            SelectTeacherCommand = new RelayCommand(SelectTeacher);
+            _mainViewModel = mainViewModel;
         }
 
+        [RelayCommand]
         private void SelectStudent()
         {
-            // Implement role selection logic here
+            _mainViewModel.SwitchToStudentView(); // Switch to Student View
         }
 
+        [RelayCommand]
         private void SelectTeacher()
         {
-            // Implement role selection logic here
+            _mainViewModel.SwitchToTeacherView(); // Switch to Teacher View
         }
     }
 }

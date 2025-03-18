@@ -36,8 +36,8 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/Agnie/Downloads/lab2aoop/e_learning_application/Views/RoleSelectionView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Agnie/Downloads/lab2aoop/e_learning_application/Views/StudentInsideView.axaml]
+[C:/Users/Agnie/Downloads/lab2aoop/e_learning_application/Views/StudentView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Agnie/Downloads/lab2aoop/e_learning_application/Views/TeacherInsideView.axaml]
+[C:/Users/Agnie/Downloads/lab2aoop/e_learning_application/Views/TeacherView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

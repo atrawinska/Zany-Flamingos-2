@@ -1,12 +1,10 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-
 namespace e_learning_application.Views;
-
-public partial class StudentInsideView : UserControl
+public partial class TeacherView : UserControl
 {
-    public StudentInsideView()
+    public TeacherView()
     {
         InitializeComponent();
     }
