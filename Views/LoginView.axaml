@@ -6,9 +6,11 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
             x:DataType="vm:LoginViewModel"
             x:Class="e_learning_application.Views.LoginView">
-    <StackPanel>
-        <TextBox Text="{Binding Username}" Watermark="Username"/>
-        <TextBox Text="{Binding Password}" Watermark="Password" PasswordChar="*"/>
-        <Button Content="Login" Command="{Binding LoginCommand}"/>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="20">
+        <TextBox Text="{Binding Username}" Watermark="Username" HorizontalAlignment="Center"/>
+        <TextBox Text="{Binding Password}" Watermark="Password" PasswordChar="*" HorizontalAlignment="Center"/>
+        <Button Content="Login" Command="{Binding LoginCommand}" HorizontalAlignment="Center"/>
+
+         <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" IsVisible="{Binding IsErrorVisible, Mode=TwoWay}" Margin="10,10,10,0"/>
     </StackPanel>
 </UserControl>

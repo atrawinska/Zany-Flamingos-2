@@ -13,15 +13,19 @@
     </Window.Background>
 
     <Window.Styles>
-        <!-- Universal style for all buttons -->
+        <!-- Universal style for TextBoxes (reset and styled) -->
+
+        <!-- Button style -->
         <Style Selector="Button">
             <Setter Property="Background" Value="Gray"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="Padding" Value="30,15,30,15"/>
+            <Setter Property="Padding" Value="30,15"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Margin" Value="10"/>
         </Style>
+
     </Window.Styles>
 
 
