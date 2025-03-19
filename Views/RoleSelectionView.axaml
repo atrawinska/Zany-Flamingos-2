@@ -11,8 +11,8 @@
     <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock  HorizontalAlignment="Center" Foreground="Black" Margin="10" FontSize="20">Welcome to Xlearning.</TextBlock>
         <TextBlock  HorizontalAlignment="Center" Foreground="Black" Margin="10" FontSize="18" >Choose your role:</TextBlock>
-        <Button Margin="10" Content="Student" Command="{Binding SelectStudentCommand}"/>
-        <Button Margin="10" Content="Teacher" Command="{Binding SelectTeacherCommand}"/>
+        <Button Margin="10" Content="Login as Student" Command="{Binding SelectStudentCommand}"/>
+        <Button Margin="10" Content="Login as Teacher" Command="{Binding SelectTeacherCommand}"/>
     </StackPanel>
 
 </UserControl>

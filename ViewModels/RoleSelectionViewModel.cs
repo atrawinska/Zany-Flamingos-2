@@ -5,24 +5,23 @@ namespace e_learning_application.ViewModels
 {
     public partial class RoleSelectionViewModel : ObservableObject
     {
-        
-        public IRelayCommand SelectStudentCommand { get; }
-        public IRelayCommand SelectTeacherCommand { get; }
+        private readonly MainWindowViewModel _mainWindowViewModel;
 
-        public RoleSelectionViewModel()
+        public RoleSelectionViewModel(MainWindowViewModel mainWindowViewModel)
         {
-            SelectStudentCommand = new RelayCommand(SelectStudent);
-            SelectTeacherCommand = new RelayCommand(SelectTeacher);
+            _mainWindowViewModel = mainWindowViewModel;
         }
 
+        [RelayCommand]
         private void SelectStudent()
         {
-            // Implement role selection logic here
+            _mainWindowViewModel.SwitchToLoginView("Student");
         }
 
+        [RelayCommand]
         private void SelectTeacher()
         {
-            // Implement role selection logic here
+            _mainWindowViewModel.SwitchToLoginView("Teacher");
         }
     }
 }

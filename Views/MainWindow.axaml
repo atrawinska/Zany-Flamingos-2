@@ -28,10 +28,7 @@
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-<DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <!-- Center content in DockPanel -->
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <ContentControl Content="{Binding CurrentView}"/>
-        </StackPanel>
-    </DockPanel>
+
+    <ContentControl Content="{Binding CurrentView}"/>
+    
 </Window>

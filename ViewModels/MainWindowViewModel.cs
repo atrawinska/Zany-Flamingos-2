@@ -1,52 +1,35 @@
-﻿
-using e_learning_application.Views;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using e_learning_application.Views;
 
-namespace e_learning_application.ViewModels;
-
-    public partial class MainWindowViewModel : ViewModelBase
+namespace e_learning_application.ViewModels
+{
+    public partial class MainWindowViewModel : ObservableObject
     {
-        private static MainWindowViewModel instance;
-        public static MainWindowViewModel Instance => instance ??= new MainWindowViewModel();
-
         [ObservableProperty]
         private UserControl currentView;
 
-        private readonly RoleSelectionView roleSelectionView = new RoleSelectionView { DataContext = new RoleSelectionViewModel() };
-        private readonly MainInsideView insideView = new MainInsideView { DataContext = new MainInsideView() };
-        private readonly StudentInsideView studentInsideView = new StudentInsideView { DataContext = new StudentInsideViewModel() };
-        private readonly TeacherInsideView teacherInsideView = new TeacherInsideView { DataContext = new TeacherInsideViewModel() };
-
         public MainWindowViewModel()
         {
-            currentView = roleSelectionView;
+            // Start with role selection screen
+            CurrentView = new RoleSelectionView { DataContext = new RoleSelectionViewModel(this) };
         }
 
-        public void SwitchToInsideView()
+        public void SwitchToLoginView(string role)
         {
-            currentView = insideView;
-        }
-
-        public void SwitchToRoleSelectionView()
-        {
-            currentView = roleSelectionView;
+            var loginViewModel = new LoginViewModel(role, this);
+            CurrentView = new LoginView { DataContext = loginViewModel };
         }
 
         public void SwitchToStudentView()
         {
-            currentView = studentInsideView;
+            CurrentView = new StudentInsideView { DataContext = new StudentInsideViewModel() };
         }
 
         public void SwitchToTeacherView()
         {
-            currentView = teacherInsideView;
-        }
-
-        public void SwitchToLoginView()
-        {
-            currentView = new LoginView { DataContext = new LoginViewModel() };
+            CurrentView = new TeacherInsideView { DataContext = new TeacherInsideViewModel() };
         }
     }
+}

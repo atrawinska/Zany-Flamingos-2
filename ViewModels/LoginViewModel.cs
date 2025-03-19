@@ -1,10 +1,9 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using e_learning_application.Models;
 
-namespace e_learning_application.ViewModels;
-
-public partial class LoginViewModel : ObservableObject
+namespace e_learning_application.ViewModels
+{
+    public partial class LoginViewModel : ObservableObject
     {
         [ObservableProperty]
         private string username;
@@ -12,34 +11,32 @@ public partial class LoginViewModel : ObservableObject
         [ObservableProperty]
         private string password;
 
-        public IRelayCommand LoginCommand { get; }
+        [ObservableProperty]
+        private string role;
 
-        private readonly string studentUsername = "student";
-        private readonly string studentPassword = "password";
-        private readonly string teacherUsername = "teacher";
-        private readonly string teacherPassword = "password";
+        private readonly MainWindowViewModel _mainWindowViewModel;
 
-        public LoginViewModel()
+        public LoginViewModel(string role, MainWindowViewModel mainWindowViewModel)
         {
-            LoginCommand = new RelayCommand(Login);
+            Role = role;
+            _mainWindowViewModel = mainWindowViewModel;
         }
 
+        [RelayCommand]
         private void Login()
         {
-            if (username == studentUsername && password == studentPassword)
+            if (Role == "Student" && Username == "student" && Password == "password")
             {
-                // Switch to student view
-                MainWindowViewModel.Instance.SwitchToStudentView();
+                _mainWindowViewModel.SwitchToStudentView();
             }
-            else if (username == teacherUsername && password == teacherPassword)
+            else if (Role == "Teacher" && Username == "teacher" && Password == "password")
             {
-                // Switch to teacher view
-                MainWindowViewModel.Instance.SwitchToTeacherView();
+                _mainWindowViewModel.SwitchToTeacherView();
             }
             else
             {
-                // Show error message
-                // Example: MessageBox.Show("Invalid credentials");
+                // Show error message (can be expanded with UI feedback)
             }
         }
     }
+}
