@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Avalonia.Controls;
+using CommunityToolkit.Mvvm.Input;
+using e_learning_application.Views;
+
 namespace e_learning_application.ViewModels;
 
 public partial class TeacherViewModel : ObservableObject
@@ -17,6 +21,7 @@ public partial class TeacherViewModel : ObservableObject
     // Password for authentication
     public string Password { get; set; }
 
+     private readonly MainWindowViewModel _mainWindowViewModel;
 
 
 
@@ -34,7 +39,8 @@ private string role = "Teacher";
 
 
 
-public TeacherViewModel( ){
+public TeacherViewModel( MainWindowViewModel mainWindowViewModel ){
+    _mainWindowViewModel = mainWindowViewModel;
 
     MySubjects =new ObservableCollection<Subject>
             {
@@ -53,13 +59,21 @@ public TeacherViewModel( ){
 }
 
 
-public TeacherViewModel( ObservableCollection<Subject> _subjects){
-
+public TeacherViewModel( MainWindowViewModel mainWindowViewModel,  ObservableCollection<Subject> _subjects){
+    _mainWindowViewModel = mainWindowViewModel;
     MySubjects = _subjects;
 
 
 
 
+}
+
+
+
+[RelayCommand]
+private void Back()
+{
+    _mainWindowViewModel.GoToRoleSelection();
 }
 
 

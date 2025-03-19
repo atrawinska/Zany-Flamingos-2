@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Avalonia.Controls;
+using CommunityToolkit.Mvvm.Input;
+using e_learning_application.Views;
 
 namespace e_learning_application.ViewModels;
 
@@ -19,6 +22,8 @@ public partial class StudentViewModel : ObservableObject
     // Password for authentication
     public string Password { get; set; }
 
+            private readonly MainWindowViewModel _mainWindowViewModel;
+
 
 
 
@@ -33,7 +38,8 @@ private ObservableCollection<Subject> subjects;
 [ObservableProperty]
 private ObservableCollection<Subject> enrolledSubjects;
 
-public StudentViewModel( ){
+public StudentViewModel( MainWindowViewModel mainWindowViewModel){
+    _mainWindowViewModel = mainWindowViewModel;
 
     Subjects = new ObservableCollection<Subject>
             {
@@ -55,10 +61,11 @@ public StudentViewModel( ){
 }
 
 
-public StudentViewModel( ObservableCollection<Subject> _subjects){
+public StudentViewModel( MainWindowViewModel mainWindowViewModel, ObservableCollection<Subject> _subjects){
 
     Subjects = _subjects;
-    EnrolledSubjects.Clear();
+    
+    _mainWindowViewModel = mainWindowViewModel;
 
 
      
@@ -66,25 +73,35 @@ public StudentViewModel( ObservableCollection<Subject> _subjects){
 
 }
 
-public StudentViewModel(int id, string name, string username, string password,ObservableCollection<Subject> _subjects, ObservableCollection<Subject> _enrolledSubjects){
+public StudentViewModel(MainWindowViewModel mainWindowViewModel, int id, string name, string username, string password,ObservableCollection<Subject> _subjects, ObservableCollection<Subject> _enrolledSubjects){
 
     Subjects = _subjects;
     EnrolledSubjects = _enrolledSubjects;
+    _mainWindowViewModel = mainWindowViewModel;
 
 
      
 
 
 }
-public StudentViewModel(int id, string name, string username, string password, ObservableCollection<Subject> _subjects){
+public StudentViewModel(MainWindowViewModel mainWindowViewModel, int id, string name, string username, string password, ObservableCollection<Subject> _subjects){
 
     Subjects = _subjects;
-    EnrolledSubjects.Clear();
+   // EnrolledSubjects.Clear();
+   _mainWindowViewModel = mainWindowViewModel;
 
 
      
 
 
+}
+
+
+
+[RelayCommand]
+private void Back()
+{
+    _mainWindowViewModel.GoToRoleSelection();
 }
 
 
