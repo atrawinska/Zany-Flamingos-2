@@ -12,7 +12,7 @@
 
         <!-- Create a StackPanel to align the elements horizontally in one line -->
             <!-- First Button -->
-            <Button FontSize="20" Padding="30,0,30,0"  Command="{Binding BackCommand}" VerticalAlignment="Stretch" Content="Courses"  HorizontalAlignment="Left" Foreground="Black" Background="#00FFFFFF"  BorderThickness="0"/>
+            <Button FontSize="20" Padding="30,0,30,0"  Command="{Binding BackCommand}" VerticalAlignment="Stretch" Content="Log out"  HorizontalAlignment="Left" Foreground="Black" Background="#00FFFFFF"  BorderThickness="0"/>
                     <!-- Second Button -->
             <Button FontSize="20" Padding="30,0,30,0" VerticalAlignment="Stretch" Content="Profile" DockPanel.Dock="Right"  HorizontalAlignment="Right" Foreground="Black" Background="#00FFFFFF"  BorderThickness="0"/>
    
