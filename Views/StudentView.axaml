@@ -28,12 +28,42 @@
 <StackPanel Orientation="Horizontal" > 
 
 
-<ListBox Margin="30" FontSize="20" Padding="15,10,15, 10"  ItemsSource="{Binding Subjects}" />
 
 
 
-<ListBox Margin="30" FontSize="20"  Padding="15,10,15, 10" ItemsSource="{Binding EnrolledSubjects}" />
+
+
         
+<StackPanel Orientation="Vertical" Margin="20">
+        <TextBlock FontSize="20" Text="My subjects" VerticalAlignment="Center"   HorizontalAlignment="Center"  Foreground="White" Margin="30,10,30,10" />
+        <ListBox Margin="30" FontSize="20" Padding="15,10,15, 10"  
+        ItemsSource="{Binding EnrolledSubjects}"
+        SelectionMode="Single,Toggle"
+        SelectedItem="{Binding SelectedMySubject}" 
+        />
+
+        <Button Content="Remove subject" Command="{Binding RemoveSubjectCommand}" 
+        FontSize="10" Background="rgb(36, 56, 57)"
+         Padding="10"
+        />
+        
+        
+</StackPanel> 
+
+<StackPanel Orientation="Vertical" Margin="20" >
+        <TextBlock FontSize="20" Text="All subjects" VerticalAlignment="Center"   HorizontalAlignment="Center"  Foreground="White" Margin="30,10,30,10"/>
+        <ListBox Margin="30" FontSize="20" Padding="15,10,15, 10"  
+        ItemsSource="{Binding Subjects}" 
+        SelectionMode="Single,Toggle"
+        SelectedItem="{Binding SelectedSubject}" 
+        />
+
+        <Button Content="Add subject" Command="{Binding AddSubjectCommand}"
+        FontSize="10" Background="rgb(36, 56, 57)" 
+        Padding="10"
+        
+         />
+</StackPanel> 
 
 
 

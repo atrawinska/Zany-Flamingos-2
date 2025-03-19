@@ -4,11 +4,18 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
 using e_learning_application.Views;
+using System.Diagnostics;
 
 namespace e_learning_application.ViewModels;
 
 public partial class StudentViewModel : ObservableObject
 {
+
+        [ObservableProperty]
+    private Subject? selectedSubject;
+
+        [ObservableProperty]    
+ private Subject? selectedMySubject;
 
     // Unique identifier for the student
     public int Id { get; set; }
@@ -51,7 +58,7 @@ public partial class StudentViewModel : ObservableObject
 
         EnrolledSubjects = new ObservableCollection<Subject>
             {
-                new Subject(name: "Math"),
+                new Subject(name: "Polish"),
                 new Subject(name: "Science")
             };
 
@@ -108,6 +115,31 @@ public partial class StudentViewModel : ObservableObject
         _mainWindowViewModel.GoToRoleSelection();
     }
 
+    [RelayCommand]
+    private void AddSubject()
+    {
+        Debug.WriteLine("List clciked");
+        
+        if(SelectedSubject is not null){
+
+       EnrolledSubjects.Add(SelectedSubject);
+      // Subjects.Remove(SelectedSubject);
+
+        }
+    }
+
+        [RelayCommand]
+    private void RemoveSubject()
+    {
+        Debug.WriteLine("List clciked");
+        
+        if(SelectedMySubject is not null){
+
+       EnrolledSubjects.Remove(SelectedMySubject);
+      // Subjects.Remove(SelectedSubject);
+
+        }
+    }
 
 
 

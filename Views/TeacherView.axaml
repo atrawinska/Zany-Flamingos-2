@@ -24,14 +24,15 @@
 
 <StackPanel Orientation="Horizontal" > 
 
+<StackPanel Orientation="Vertical" >
+        <TextBlock FontSize="20" Text="My subjects" VerticalAlignment="Center"   HorizontalAlignment="Center"  Foreground="White" Margin="30,10,30,10"/>
+        <ListBox Margin="30" FontSize="20" Padding="15,10,15, 10"  ItemsSource="{Binding Subjects}"  />
+</StackPanel> 
 
-<ListBox Margin="30" FontSize="20" Padding="15,10,15, 10"  ItemsSource="{Binding Subjects}" />
-
-
-
-<ListBox Margin="30" FontSize="20"  Padding="15,10,15, 10" ItemsSource="{Binding MySubjects}" />
-
-        
+<StackPanel Orientation="Vertical" > 
+        <TextBlock FontSize="20" Text="{Binding Role}" VerticalAlignment="Center"  HorizontalAlignment="Center"  Foreground="White" Margin="30,10,30,10"/>        
+        <ListBox Margin="30" FontSize="20"  Padding="15,10,15, 10" ItemsSource="{Binding MySubjects}" />
+</StackPanel> 
 
 
 
