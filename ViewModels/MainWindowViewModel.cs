@@ -24,12 +24,12 @@ namespace e_learning_application.ViewModels
 
         public void SwitchToStudentView()
         {
-            CurrentView = new StudentInsideView { DataContext = new StudentInsideViewModel() };
+            CurrentView = new StudentView { DataContext = new StudentViewModel() };
         }
 
         public void SwitchToTeacherView()
         {
-            CurrentView = new TeacherInsideView { DataContext = new TeacherInsideViewModel() };
+            CurrentView = new TeacherView { DataContext = new TeacherViewModel() };
         }
     }
 }
