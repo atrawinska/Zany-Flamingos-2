@@ -9,7 +9,7 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="Your Uni">
     <Window.Background>
-        <SolidColorBrush Color="rgb(238, 223, 228)"/>
+        <SolidColorBrush Color="rgb(64, 86, 87)"/>
     </Window.Background>
 
     <Window.Styles>
@@ -24,6 +24,15 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="CornerRadius" Value="10"/>
             <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="rgb(43, 61, 62)"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="30,15"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Margin" Value="0"/>
         </Style>
 
     </Window.Styles>

@@ -31,5 +31,13 @@ namespace e_learning_application.ViewModels
         {
             CurrentView = new TeacherView { DataContext = new TeacherViewModel() };
         }
+
+
+        public void GoToRoleSelection(){
+
+            CurrentView = new RoleSelectionView { DataContext = new RoleSelectionViewModel(this) };
+
+        }
+
     }
 }

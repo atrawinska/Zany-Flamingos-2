@@ -4,9 +4,8 @@ using e_learning_application.Models;
 using System.Collections.Generic;
 using System.Linq; // Make sure to import LINQ
 
-namespace e_learning_application.ViewModels
-{
-    public partial class LoginViewModel : ObservableObject
+namespace e_learning_application.ViewModels;
+public partial class LoginViewModel : ObservableObject
     {
         [ObservableProperty]
         private string username;
@@ -84,5 +83,14 @@ namespace e_learning_application.ViewModels
                 IsErrorVisible = true;
             }
         }
-    }
+
+
+
+[RelayCommand]
+private void Back()
+{
+    _mainWindowViewModel.GoToRoleSelection();
 }
+
+    }
+    
