@@ -22,89 +22,93 @@ public partial class StudentViewModel : ObservableObject
     // Password for authentication
     public string Password { get; set; }
 
-            private readonly MainWindowViewModel _mainWindowViewModel;
+    private readonly MainWindowViewModel _mainWindowViewModel;
 
 
 
 
-[ObservableProperty]
-private string role = "Student";
+    [ObservableProperty]
+    private string role = "Student";
 
 
-[ObservableProperty]
-private ObservableCollection<Subject> subjects;
+    [ObservableProperty]
+    private ObservableCollection<Subject> subjects;
 
 
-[ObservableProperty]
-private ObservableCollection<Subject> enrolledSubjects;
+    [ObservableProperty]
+    private ObservableCollection<Subject> enrolledSubjects;
 
-public StudentViewModel( MainWindowViewModel mainWindowViewModel){
-    _mainWindowViewModel = mainWindowViewModel;
+    public StudentViewModel(MainWindowViewModel mainWindowViewModel)
+    {
+        _mainWindowViewModel = mainWindowViewModel;
 
-    Subjects = new ObservableCollection<Subject>
+        Subjects = new ObservableCollection<Subject>
             {
                 new Subject(name: "Math"),
                 new Subject(name: "Science")
             };
 
 
-    EnrolledSubjects = new ObservableCollection<Subject>
+        EnrolledSubjects = new ObservableCollection<Subject>
             {
                 new Subject(name: "Math"),
                 new Subject(name: "Science")
             };
 
 
-     
-
-
-}
-
-
-public StudentViewModel( MainWindowViewModel mainWindowViewModel, ObservableCollection<Subject> _subjects){
-
-    Subjects = _subjects;
-    
-    _mainWindowViewModel = mainWindowViewModel;
-
-
-     
-
-
-}
-
-public StudentViewModel(MainWindowViewModel mainWindowViewModel, int id, string name, string username, string password,ObservableCollection<Subject> _subjects, ObservableCollection<Subject> _enrolledSubjects){
-
-    Subjects = _subjects;
-    EnrolledSubjects = _enrolledSubjects;
-    _mainWindowViewModel = mainWindowViewModel;
-
-
-     
-
-
-}
-public StudentViewModel(MainWindowViewModel mainWindowViewModel, int id, string name, string username, string password, ObservableCollection<Subject> _subjects){
-
-    Subjects = _subjects;
-   // EnrolledSubjects.Clear();
-   _mainWindowViewModel = mainWindowViewModel;
-
-
-     
-
-
-}
 
 
 
-[RelayCommand]
-private void Back()
-{
-    _mainWindowViewModel.GoToRoleSelection();
-}
+    }
+
+
+    public StudentViewModel(MainWindowViewModel mainWindowViewModel, ObservableCollection<Subject> _subjects)
+    {
+
+        Subjects = _subjects;
+
+        _mainWindowViewModel = mainWindowViewModel;
 
 
 
-   
+
+
+    }
+
+    public StudentViewModel(MainWindowViewModel mainWindowViewModel, int id, string name, string username, string password, ObservableCollection<Subject> _subjects, ObservableCollection<Subject> _enrolledSubjects)
+    {
+
+        Subjects = _subjects;
+        EnrolledSubjects = _enrolledSubjects;
+        _mainWindowViewModel = mainWindowViewModel;
+
+
+
+
+
+    }
+    public StudentViewModel(MainWindowViewModel mainWindowViewModel, int id, string name, string username, string password, ObservableCollection<Subject> _subjects)
+    {
+
+        Subjects = _subjects;
+        // EnrolledSubjects.Clear();
+        _mainWindowViewModel = mainWindowViewModel;
+
+
+
+
+
+    }
+
+
+
+    [RelayCommand]
+    private void Back()
+    {
+        _mainWindowViewModel.GoToRoleSelection();
+    }
+
+
+
+
 }

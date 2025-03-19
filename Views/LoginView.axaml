@@ -6,12 +6,23 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
             x:DataType="vm:LoginViewModel"
             x:Class="e_learning_application.Views.LoginView">
+            
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="20">
         <TextBox Text="{Binding Username}" Watermark="Username" HorizontalAlignment="Center"/>
         <TextBox Text="{Binding Password}" Watermark="Password" PasswordChar="*" HorizontalAlignment="Center"/>
         <Button Content="Login" Command="{Binding LoginCommand}" HorizontalAlignment="Center"/>
 
+<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="20" Orientation="Horizontal">
+   <!-- <TextBlock Foreground="rgb(187, 206, 207)" Text="New user?" Margin="0" FontSize="20" VerticalAlignment="Center"/> -->
+    <Button Foreground="rgb(187, 206, 207)" Content="New user? Register" Margin="0" Command="{Binding RegisterCommand}" FontSize="20" Background="Transparent" VerticalAlignment="Center"/>
+</StackPanel>
+
+
+
          <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" IsVisible="{Binding IsErrorVisible, Mode=TwoWay}" Margin="10,10,10,0"/>
           <Button Content="Back" Command="{Binding BackCommand}" HorizontalAlignment="Center" FontSize="10" Background="rgb(36, 56, 57)"/>
+         
+
+
     </StackPanel>
 </UserControl>

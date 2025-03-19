@@ -23,5 +23,7 @@ namespace e_learning_application.ViewModels
         {
             _mainWindowViewModel.SwitchToLoginView("Teacher");
         }
+
+        
     }
 }

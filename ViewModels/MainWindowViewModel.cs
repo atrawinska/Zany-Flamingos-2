@@ -39,5 +39,14 @@ namespace e_learning_application.ViewModels
 
         }
 
+       
+
+         public void  GoToRegister(){
+
+            CurrentView = new RegisterView{ DataContext = new RegisterViewModel(this) };
+
+        }
+
+
     }
 }

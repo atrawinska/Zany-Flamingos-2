@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:e_learning_application.ViewModels"
+             mc:Ignorable="d"
+             x:Class="e_learning_application.Views.RegisterView"
+             x:DataType="vm:RegisterViewModel"
+             d:DesignWidth="800" d:DesignHeight="450">
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="20">
+        <TextBox Text="{Binding Name}" Watermark="Full name" HorizontalAlignment="Center"/>
+        <TextBox Text="{Binding Username}" Watermark="Username" HorizontalAlignment="Center"/>
+        <TextBox Text="{Binding Password}" Watermark="Password" PasswordChar="*" HorizontalAlignment="Center"/>
+        <Button Content="Register" Command="{Binding RegisterCommand}" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" IsVisible="{Binding IsErrorVisible, Mode=TwoWay}" Margin="10,10,10,0"/>
+        <Button Content="Back" Command="{Binding BackCommand}" HorizontalAlignment="Center" FontSize="10" Background="rgb(36, 56, 57)"/>
+    </StackPanel>
+
+</UserControl>

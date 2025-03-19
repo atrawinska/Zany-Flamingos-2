@@ -92,5 +92,19 @@ private void Back()
     _mainWindowViewModel.GoToRoleSelection();
 }
 
+
+
+
+[RelayCommand]
+private void Register()
+{
+    _mainWindowViewModel.GoToRegister();
+}
+
+
+
+
+
+
     }
     

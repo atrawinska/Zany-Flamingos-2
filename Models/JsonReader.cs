@@ -14,6 +14,7 @@ public class JsonReader{
      private readonly string _filePath;
 
 
+
      public T ReadData<T>()
     {
         try
