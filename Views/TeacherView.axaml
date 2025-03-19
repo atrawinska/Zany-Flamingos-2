@@ -30,6 +30,7 @@
 
 
 <ListBox Margin="30" FontSize="20"  Padding="15,10,15, 10" ItemsSource="{Binding MySubjects}" />
+
         
 
 

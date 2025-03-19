@@ -35,6 +35,26 @@
             <Setter Property="Margin" Value="0"/>
         </Style>
 
+    <Style Selector="ListBoxItem">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="rgb(197, 216, 217)"/>
+         <Setter Property="BorderBrush" Value="rgb(197, 216, 217)"/>
+         <Setter Property="CornerRadius" Value="25"/>
+         <Setter Property="BorderThickness" Value="2"/>
+           <Setter Property="Padding" Value="10"/>
+             <Setter Property="Margin" Value="5"/>
+             <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+      </Style>
+
+        <Style Selector="ListBox">
+        <Setter Property="Background" Value="Transparent"/>
+         <Setter Property="BorderThickness" Value="0"/>
+      </Style>
+        
+
+        
+
     </Window.Styles>
 
 
