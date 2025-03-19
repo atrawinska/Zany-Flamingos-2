@@ -1,12 +1,18 @@
-﻿using Avalonia.Controls;
+﻿using System.Collections.Generic;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using e_learning_application.Models;
 using e_learning_application.Views;
 
 namespace e_learning_application.ViewModels
 {
     public partial class MainWindowViewModel : ObservableObject
     {
+        public List<IUser> allStudents;
+          public List<IUser> allTeachers;
+
+
         [ObservableProperty]
         private UserControl currentView;
 
@@ -14,6 +20,8 @@ namespace e_learning_application.ViewModels
         {
             // Start with role selection screen
             CurrentView = new RoleSelectionView { DataContext = new RoleSelectionViewModel(this) };
+            allStudents = new(); //change to read from json
+            allTeachers = new(); //change to read from json
         }
 
         public void SwitchToLoginView(string role)
@@ -41,9 +49,9 @@ namespace e_learning_application.ViewModels
 
        
 
-         public void  GoToRegister(){
+         public void  GoToRegister(string type){
 
-            CurrentView = new RegisterView{ DataContext = new RegisterViewModel(this) };
+            CurrentView = new RegisterView{ DataContext = new RegisterViewModel(this, type)};
 
         }
 

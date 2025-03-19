@@ -98,7 +98,7 @@ private void Back()
 [RelayCommand]
 private void Register()
 {
-    _mainWindowViewModel.GoToRegister();
+    _mainWindowViewModel.GoToRegister(role);
 }
 
 
