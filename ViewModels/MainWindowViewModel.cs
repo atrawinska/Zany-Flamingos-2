@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -9,8 +10,8 @@ namespace e_learning_application.ViewModels
 {
     public partial class MainWindowViewModel : ObservableObject
     {
-        public List<IUser> allStudents;
-          public List<IUser> allTeachers;
+        public List<Student> allStudents;
+          public List<Teacher> allTeachers;
 
 
         [ObservableProperty]
@@ -20,8 +21,19 @@ namespace e_learning_application.ViewModels
         {
             // Start with role selection screen
             CurrentView = new RoleSelectionView { DataContext = new RoleSelectionViewModel(this) };
-            allStudents = new(); //change to read from json
-            allTeachers = new(); //change to read from json
+            // allStudents = new(); //change to read from json
+            // allTeachers = new(); //change to read from json
+
+            JsonReader studentReader = new("Student");
+            allStudents = studentReader.ReadData<Student>();
+
+             JsonReader teacherReader = new("Teacher");
+            allTeachers = teacherReader.ReadData<Teacher>();
+            foreach(Student x in allStudents){
+                Debug.WriteLine(x.Name);}
+            foreach(Teacher x in allTeachers){
+            Debug.WriteLine(x.Name);}
+
         }
 
         public void SwitchToLoginView(string role)

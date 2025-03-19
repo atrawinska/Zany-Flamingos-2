@@ -54,12 +54,12 @@ public partial class RegisterViewModel : ObservableObject
         Debug.Write("To the registration and its json reader type:" +Type +"was passed.");
         jsonReader = new(Type);
 
-        IUser user;
+        
         
 
         if(Type == "Student"){
 
-             user = new Student(username, password, name );
+             Student user = new Student(username, password, name );
              _mainWindowViewModel.allStudents.Add(user);
                 jsonReader.SaveData(_mainWindowViewModel.allStudents);
                  Debug.WriteLine("Registered a new "+ Type);
@@ -68,7 +68,7 @@ public partial class RegisterViewModel : ObservableObject
         }
         else if(Type == "Teacher"){
 
-             user = new Teacher(username, password, name);
+             Teacher user = new Teacher(username, password, name);
                           _mainWindowViewModel.allTeachers.Add(user);
                 jsonReader.SaveData(_mainWindowViewModel.allTeachers);
              

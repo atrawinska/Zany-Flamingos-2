@@ -16,6 +16,7 @@ private string studentPath = "student.json";
 private string teacherPath = "teacher.json";
 private string subjectPath = "subject.json"; 
 
+
 public JsonReader(string type)
 {
     // Get the project's root directory (two levels up)
@@ -53,39 +54,43 @@ public JsonReader(string type)
 }
 
 
-
 /// <summary>
-/// Function to read the data.
+/// Function to read the list of data.
 /// </summary>
 /// <typeparam name="T"></typeparam>
-/// <returns>The read data</returns>
-     public T ReadData<T>()
+/// <returns>List of objects of type T</returns>
+public List<T> ReadData<T>()
+{
+    try
     {
-        try
+        if (File.Exists(_filePath))
         {
-            if (File.Exists(_filePath))
-            {
-                string jsonString = File.ReadAllText(_filePath);
-                var options = new JsonSerializerOptions
-                {
-                    ReferenceHandler = ReferenceHandler.IgnoreCycles
-                };
+            string jsonString = File.ReadAllText(_filePath);
 
-                return JsonSerializer.Deserialize<T>(jsonString, options);
-            }
-            else
+            if (string.IsNullOrWhiteSpace(jsonString)) 
             {
-                Debug.WriteLine("File not found. Returning default.");
-                return default; // Or initialize with a default value
+                return new List<T>(); // Return an empty list if the file is empty
             }
+
+            var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.IgnoreCycles
+            };
+
+            return JsonSerializer.Deserialize<List<T>>(jsonString, options) ?? new List<T>();
         }
-        catch (Exception ex)
+        else
         {
-            Debug.WriteLine($"Error reading data: {ex.Message}");
-            return default;
+            Debug.WriteLine("File not found. Returning empty list.");
+            return new List<T>(); // Return an empty list if the file doesn't exist
         }
-    }//read data
-
+    }
+    catch (Exception ex)
+    {
+        Debug.WriteLine($"Error reading data: {ex.Message}");
+        return new List<T>(); // Return an empty list in case of an error
+    }
+}
 
 /// <summary>
 /// Function to save the data.

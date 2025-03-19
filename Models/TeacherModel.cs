@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System;
 
 namespace e_learning_application.Models;
-    public class Teacher  : IUser
+    public class Teacher  
     {
     public int Id { get; set; }
 
