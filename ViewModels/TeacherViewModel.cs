@@ -10,9 +10,12 @@ namespace e_learning_application.ViewModels;
 public partial class TeacherViewModel : ObservableObject
 {
 
+[ObservableProperty]
+    private Subject? selectedSubject;
+
     public int Id { get; set; }
 
-    // Full name 
+    
     public string Name { get; set; }
 
     // Username for authentication
@@ -75,6 +78,55 @@ private void Back()
 {
     _mainWindowViewModel.GoToRoleSelection();
 }
+
+
+    [ObservableProperty]
+
+    private string subjectName;
+
+
+
+        [ObservableProperty]
+    private string subjectDescription;
+
+
+[RelayCommand]
+private void AddSubject()
+{
+    Subject newSubject = new(name: SubjectName, description: SubjectDescription);
+    mySubjects.Add(newSubject);
+}
+
+[RelayCommand]
+private void RemoveSubject()
+{
+    
+    mySubjects.Remove(SelectedSubject);
+    
+}
+
+[ObservableProperty]
+private bool displayVisible = false;
+
+    [ObservableProperty]
+
+    private string subjectNameDisplay;
+
+
+
+        [ObservableProperty]
+    private string subjectDescriptionDisplay;
+
+
+[RelayCommand]
+private void DisplaySubject()
+{
+    
+   DisplayVisible = true;
+   SubjectNameDisplay = SelectedSubject.Name;
+   SubjectDescriptionDisplay = SelectedSubject.Description;
+}
+
 
 
    

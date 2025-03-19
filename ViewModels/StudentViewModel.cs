@@ -11,11 +11,11 @@ namespace e_learning_application.ViewModels;
 public partial class StudentViewModel : ObservableObject
 {
 
-        [ObservableProperty]
+    [ObservableProperty]
     private Subject? selectedSubject;
 
-        [ObservableProperty]    
- private Subject? selectedMySubject;
+    [ObservableProperty]
+    private Subject? selectedMySubject;
 
     // Unique identifier for the student
     public int Id { get; set; }
@@ -119,24 +119,26 @@ public partial class StudentViewModel : ObservableObject
     private void AddSubject()
     {
         Debug.WriteLine("List clciked");
-        
-        if(SelectedSubject is not null){
 
-       EnrolledSubjects.Add(SelectedSubject);
-      // Subjects.Remove(SelectedSubject);
+        if (SelectedSubject is not null)
+        {
+
+            EnrolledSubjects.Add(SelectedSubject);
+            // Subjects.Remove(SelectedSubject);
 
         }
     }
 
-        [RelayCommand]
+    [RelayCommand]
     private void RemoveSubject()
     {
         Debug.WriteLine("List clciked");
-        
-        if(SelectedMySubject is not null){
 
-       EnrolledSubjects.Remove(SelectedMySubject);
-      // Subjects.Remove(SelectedSubject);
+        if (SelectedMySubject is not null)
+        {
+
+            EnrolledSubjects.Remove(SelectedMySubject);
+            // Subjects.Remove(SelectedSubject);
 
         }
     }
