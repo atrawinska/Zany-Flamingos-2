@@ -39,19 +39,28 @@ public partial class RegisterViewModel : ObservableObject
     [ObservableProperty]
     private bool isErrorVisible; // For controlling visibility of the error message
 
+    
+    [ObservableProperty]
+    private string message; // For holding the error message
+
+    [ObservableProperty]
+    private bool isMessageVisible; // For controlling visibility of the error message
+
     private readonly MainWindowViewModel _mainWindowViewModel;
 
     public RegisterViewModel(MainWindowViewModel mainWindowViewModel, string type)
     {
         Type = type;
         _mainWindowViewModel = mainWindowViewModel;
+        HideError();
+        HideMessage();
 
     }
 
     [RelayCommand]
     private void Register()
     {
-        HideMessage();
+        HideError();
         Debug.Write("To the registration and its json reader type:" +Type +"was passed.");
         jsonReader = new(Type);
 
@@ -66,10 +75,11 @@ public partial class RegisterViewModel : ObservableObject
 
         if(Type == "Student"){
 
-             Student user = new Student(username, password, name );
+             Student user = new Student(username, PasswordHasher.HashPassword(password), name );
              _mainWindowViewModel.allStudents.Add(user);
                 jsonReader.SaveData(_mainWindowViewModel.allStudents);
                  Debug.WriteLine("Registered a new "+ Type);
+                PrintMessage("Registered. Now please go back to the main screen and log in.");
 
 
         }
@@ -80,6 +90,7 @@ public partial class RegisterViewModel : ObservableObject
                 jsonReader.SaveData(_mainWindowViewModel.allTeachers);
              
                 Debug.WriteLine("Registered a new "+ Type);
+                PrintMessage("Registered. Now please go back to the main screen and log in.");
 
         }
 
@@ -115,15 +126,26 @@ public partial class RegisterViewModel : ObservableObject
     }
 private void PrintMessage(string message)
 {
+    Message = message;
+    IsMessageVisible = true;
+}
+
+private void PrintError(string message)
+{
     ErrorMessage = message;
     IsErrorVisible = true;
 }
-
 private void HideMessage()
+{
+    Message = "";
+    IsMessageVisible = false;
+}
+private void HideError()
 {
     ErrorMessage = "";
     IsErrorVisible = false;
 }
+
 
     
 

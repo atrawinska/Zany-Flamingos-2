@@ -124,8 +124,9 @@ public partial class StudentViewModel : ObservableObject
     {
         Debug.WriteLine("List clciked: " + SelectedSubject.Name);
 
-        if (SelectedSubject is not null)
+        if (SelectedSubject is not null && !EnrolledSubjects.Contains(SelectedSubject))
         {
+            
 
             EnrolledSubjects.Add(SelectedSubject);
             currentStudent.EnrolledSubjects.Add(SelectedSubject.Id);
@@ -140,16 +141,18 @@ public partial class StudentViewModel : ObservableObject
     {
         Debug.WriteLine("List clciked");
 
-        if (SelectedMySubject is not null)
-        {
+       
 
             EnrolledSubjects.Remove(SelectedMySubject);
             // Subjects.Remove(SelectedSubject);
-             currentStudent.EnrolledSubjects.Remove(SelectedSubject.Id);
+            //this has problem with null reference
+          //  currentStudent.EnrolledSubjects.Remove(SelectedMySubject.Id);
+           //  currentStudent.EnrolledSubjects.Remove((int)SelectedMySubject.Id);
+      //     currentStudent.EnrolledSubjects.Remove(SelectedMySubject.Id);
             _mainWindowViewModel.SaveAll();
 
-        }
-
+        
+  
     }
 
 
