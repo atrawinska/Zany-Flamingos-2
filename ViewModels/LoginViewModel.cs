@@ -95,7 +95,7 @@ public partial class LoginViewModel : ObservableObject
             {
                 _mainWindowViewModel.CurrentTeacher = teacher;
                 Debug.WriteLine("LoginView: Assigned the read object "+ Role + " with name:" + teacher.Name);
-                _mainWindowViewModel.SwitchToTeacherView();
+                _mainWindowViewModel.SwitchToTeacherView(teacher);
             }
 
             // Hide error message on successful login

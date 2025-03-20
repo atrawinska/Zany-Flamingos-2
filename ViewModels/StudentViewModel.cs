@@ -49,19 +49,12 @@ public partial class StudentViewModel : ObservableObject
     {
         _mainWindowViewModel = mainWindowViewModel;
 
-        //For testing
-        // Subjects = new ObservableCollection<Subject>
-        //     {
-        //         new Subject(name: "Math"),
-        //         new Subject(name: "Science")
-        //     };
 
 
         EnrolledSubjects = new ObservableCollection<Subject>();
-            // {
-            //     new Subject(name: "Polish"),
-            //     new Subject(name: "Science")
-            // };
+
+        
+
 
     //INSTEAD of assigning lists, do this because it is an observable collection
        Subjects = new ObservableCollection<Subject>(mainWindowViewModel.allSubjects);

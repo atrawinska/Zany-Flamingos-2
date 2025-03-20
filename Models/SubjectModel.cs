@@ -52,6 +52,8 @@ public class Subject
         Debug.WriteLine("New subject created, id: " + Id);
     }
 
+    public Subject(){}
+
 
     /// <summary>
     /// Overrides tostring() method so it displays well in the lisboxes.

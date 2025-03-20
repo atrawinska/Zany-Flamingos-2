@@ -13,14 +13,14 @@ namespace e_learning_application.ViewModels
     {
         public List<Student> allStudents;
         public Dictionary<string, Student> allStudentsMap { get; private set; } = new Dictionary<string, Student>();
-          public List<Teacher> allTeachers;
-          public Dictionary<string, Teacher> allTeachersMap { get; private set; } = new Dictionary<string, Teacher>();
-          public List<Subject> allSubjects;
+        public List<Teacher> allTeachers;
+        public Dictionary<string, Teacher> allTeachersMap { get; private set; } = new Dictionary<string, Teacher>();
+        public List<Subject> allSubjects;
 
 
 
-           public Student CurrentStudent {get; set;}
-           public Teacher CurrentTeacher {get; set;}
+        public Student CurrentStudent { get; set; }
+        public Teacher CurrentTeacher { get; set; }
 
 
 
@@ -30,30 +30,25 @@ namespace e_learning_application.ViewModels
         public MainWindowViewModel()
         {
             // Start with role selection screen
-            CurrentView = new RoleSelectionView { DataContext = new RoleSelectionViewModel(this) };
-            // allStudents = new(); //change to read from json
-            // allTeachers = new(); //change to read from json
+          
 
             JsonReader studentReader = new("Student");
-           JsonReader teacherReader = new("Teacher");
-           JsonReader subjectReader = new("Subject");
+            JsonReader teacherReader = new("Teacher");
+            JsonReader subjectReader = new("Subject");
 
-            
-            allStudents = studentReader.ReadData<Student>();             
+            allStudents = studentReader.ReadData<Student>();
             allTeachers = teacherReader.ReadData<Teacher>();
             allSubjects = subjectReader.ReadData<Subject>();
 
-            foreach(Student x in allStudents){
-                Debug.WriteLine(x.Name);}
-
-            foreach(Teacher x in allTeachers){
-            Debug.WriteLine(x.Name);}
-
             allStudentsMap = allStudents.ToDictionary(s => s.Username, s => s);
             allTeachersMap = allTeachers.ToDictionary(t => t.Username, t => t);
-           
+
+              CurrentView = new RoleSelectionView { DataContext = new RoleSelectionViewModel(this) };
+
+            
 
         }
+
 
         public void SwitchToLoginView(string role)
         {
@@ -66,53 +61,59 @@ namespace e_learning_application.ViewModels
             CurrentView = new StudentView { DataContext = new StudentViewModel(this) };
         }
 
-        public void SwitchToTeacherView()
+        public void SwitchToTeacherView(Teacher teacher)
         {
-            CurrentView = new TeacherView { DataContext = new TeacherViewModel(this) };
+            CurrentView = new TeacherView { DataContext = new TeacherViewModel(this, teacher) };
         }
 
 
-        public void GoToRoleSelection(){
+        public void GoToRoleSelection()
+        {
 
             CurrentView = new RoleSelectionView { DataContext = new RoleSelectionViewModel(this) };
 
         }
 
-       
-
-         public void  GoToRegister(string type){
-
-            CurrentView = new RegisterView{ DataContext = new RegisterViewModel(this, type)};
-
-        }
 
 
-        public void AddSubject(Subject newSubject){
+        public void GoToRegister(string type)
+        {
 
-           JsonReader subjectReader = new("Subject");
-
-             allSubjects.Add(newSubject);
-             subjectReader.SaveData(allSubjects);
-
+            CurrentView = new RegisterView { DataContext = new RegisterViewModel(this, type) };
 
         }
 
-        public void RemoveSubject(Subject badSubject){
 
-            
-           JsonReader subjectReader = new("Subject");
+        public void AddSubject(Subject newSubject)
+        {
+
+            JsonReader subjectReader = new("Subject");
+
+            allSubjects.Add(newSubject);
+            subjectReader.SaveData(allSubjects);
+            SaveAll();
+
+
+        }
+
+        public void RemoveSubject(Subject badSubject)
+        {
+
+
+            JsonReader subjectReader = new("Subject");
             allSubjects.Remove(badSubject);
             subjectReader.SaveData(allSubjects);
 
         }
 
-        public void SaveAll(){
-        JsonReader studentReader = new("Student");
-           JsonReader teacherReader = new("Teacher");
-           JsonReader subjectReader = new("Subject");
+        public void SaveAll()
+        {
+            JsonReader studentReader = new("Student");
+            JsonReader teacherReader = new("Teacher");
+            JsonReader subjectReader = new("Subject");
             subjectReader.SaveData(allSubjects);
             teacherReader.SaveData(allTeachers);
-             studentReader.SaveData(allStudents);
+            studentReader.SaveData(allStudents);
         }
 
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using System.Text.Json.Serialization;
 
 namespace e_learning_application.Models;
     public class Teacher  
@@ -14,8 +15,9 @@ namespace e_learning_application.Models;
 
     // Password for authentication
     public string Password { get; set; }
-    public List<Subject> MySubjects { get; set; } = new List<Subject>();  // List of subject the teacher created
-
+    
+    [JsonIgnore]  // This is filled dynamically when loading data
+    public List<Subject> MySubjects { get; set; } = new List<Subject>();
 
 public Teacher(){}
 

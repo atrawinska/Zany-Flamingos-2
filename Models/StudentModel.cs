@@ -10,7 +10,7 @@ namespace e_learning_application.Models
 
         public int Id { get; set; } // Unique identifier for the student
         public string Name { get; set; } // Full name of the student
-        public List<Subject> EnrolledSubjects { get; set; } = new List<Subject>();
+        public List<int> EnrolledSubjects { get; set; } = new List<int>();
 
 
         public Student()
@@ -22,16 +22,21 @@ namespace e_learning_application.Models
             Username = username;
             Password = password;
             Name = name;
-            EnrolledSubjects = new List<Subject>(); // Ensures it's never null
+
+
+
+
+
+            EnrolledSubjects = new List<int>(); // Ensures it's never null
         }
 
-                public Student(int id, string username, string password, string name, List<Subject> enrolledSubjects = null)
+                public Student(int id, string username, string password, string name, List<int> enrolledSubjects = null)
         {
             Id = id;
             Username = username;
             Password = password;
             Name = name;
-            EnrolledSubjects = enrolledSubjects ?? new List<Subject>(); // Ensures it's never null
+            EnrolledSubjects = enrolledSubjects ?? new List<int>(); // Ensures it's never null
         }
 
 

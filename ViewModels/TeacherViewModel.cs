@@ -4,133 +4,131 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
 using e_learning_application.Views;
+using e_learning_application.Models;
+using System.Diagnostics;
+using System;
+using System.Linq;
 
 namespace e_learning_application.ViewModels;
 
 public partial class TeacherViewModel : ObservableObject
 {
-
-[ObservableProperty]
+    [ObservableProperty]
     private Subject? selectedSubject;
 
-    public int Id { get; set; }
+    private Teacher currentTeacher;
 
-    
-    public string Name { get; set; }
-
-    // Username for authentication
-    public string Username { get; set; }
-
-    // Password for authentication
-    public string Password { get; set; }
-
-     private readonly MainWindowViewModel _mainWindowViewModel;
-
-
+    private readonly MainWindowViewModel _mainWindowViewModel;
 
     [ObservableProperty]
-private string role = "Teacher";
-
-
-    [ObservableProperty]
-    private ObservableCollection<Subject> mySubjects; //subjects the teacher has created
-
-        [ObservableProperty]
-    private ObservableCollection<Subject> subjects; //subjects the teacher has created
-
-
-
-
-
-public TeacherViewModel( MainWindowViewModel mainWindowViewModel ){
-    _mainWindowViewModel = mainWindowViewModel;
-
-    MySubjects =new ObservableCollection<Subject>
-            {
-                new Subject(name: "Math"),
-                new Subject(name: "Science")
-            };
-    Subjects =new ObservableCollection<Subject>
-            {
-                new Subject(name: "Math"),
-                new Subject(name: "Science")
-            };
-
-
-
-
-}
-
-
-public TeacherViewModel( MainWindowViewModel mainWindowViewModel,  ObservableCollection<Subject> _subjects){
-    _mainWindowViewModel = mainWindowViewModel;
-    MySubjects = _subjects;
-
-
-
-
-}
-
-
-
-[RelayCommand]
-private void Back()
-{
-    _mainWindowViewModel.GoToRoleSelection();
-}
-
+    private string role = "Teacher";
 
     [ObservableProperty]
+    private ObservableCollection<Subject> mySubjects; // Subjects created by the teacher
 
+    // Pass the Teacher object into the constructor to avoid null issues
+    public TeacherViewModel(MainWindowViewModel mainWindowViewModel, Teacher teacher)
+    {
+        _mainWindowViewModel = mainWindowViewModel;
+        currentTeacher = teacher;
+
+        MySubjects = new();
+
+
+        foreach( var sub in mainWindowViewModel.allSubjects){
+
+            if(sub.TeacherId == currentTeacher.Id){
+                MySubjects.Add(sub);
+
+            }
+        }
+
+
+      
+
+
+
+
+        Debug.WriteLine($"Teacher {teacher.Name} loaded with {MySubjects.Count} subjects.");
+    }
+
+
+
+
+
+
+
+
+
+    [RelayCommand]
+    private void Back()
+    {
+        _mainWindowViewModel.GoToRoleSelection();
+    }
+
+    [ObservableProperty]
     private string subjectName;
 
-
-
-        [ObservableProperty]
+    [ObservableProperty]
     private string subjectDescription;
 
+    [RelayCommand]
+    private void AddSubject()
+    {
+        if (string.IsNullOrWhiteSpace(SubjectName) || string.IsNullOrWhiteSpace(SubjectDescription))
+        {
+            Debug.WriteLine("Cannot add subject with empty name or description.");
+            return;
+        }
 
-[RelayCommand]
-private void AddSubject()
-{
-    Subject newSubject = new(name: SubjectName, description: SubjectDescription);
-    mySubjects.Add(newSubject);
-   _mainWindowViewModel.AddSubject(newSubject);
-}
+        // Create new subject
+        Subject newSubject = new()
+        {
+            Id = new Random().Next(100000, 999999), // Generate a random unique ID
+            Name = SubjectName,
+            Description = SubjectDescription,
+            TeacherId = currentTeacher.Id
+        };
 
-[RelayCommand]
-private void RemoveSubject()
-{
-    
-    mySubjects.Remove(SelectedSubject);
-    _mainWindowViewModel.RemoveSubject(SelectedSubject);
-}
-    
+        // 🔹 Add subject to teacher's collection
 
+        MySubjects.Add(newSubject); // UI updates automatically
 
-[ObservableProperty]
-private bool displayVisible = false;
+        // 🔹 Add to main subject list
+        _mainWindowViewModel.AddSubject(newSubject);
+
+        Debug.WriteLine($"Added subject {newSubject.Name} to {currentTeacher.Name}");
+    }
+
+    [RelayCommand]
+    private void RemoveSubject()
+    {
+        if (SelectedSubject != null)
+        {
+            MySubjects.Remove(SelectedSubject);
+            _mainWindowViewModel.RemoveSubject(SelectedSubject);
+
+            Debug.WriteLine($"Removed subject {SelectedSubject.Name} from {currentTeacher.Name}");
+        }
+    }
 
     [ObservableProperty]
+    private bool displayVisible = false;
 
+    [ObservableProperty]
     private string subjectNameDisplay;
 
-
-
-        [ObservableProperty]
+    [ObservableProperty]
     private string subjectDescriptionDisplay;
 
-
-[RelayCommand]
-private void DisplaySubject()
-{
-    
-   DisplayVisible = true;
-   SubjectNameDisplay = SelectedSubject.Name;
-   SubjectDescriptionDisplay = SelectedSubject.Description;
-}
-
-
-
-   
+    [RelayCommand]
+    private void DisplaySubject()
+    {
+        if (SelectedSubject != null)
+        {
+            DisplayVisible = true;
+            SubjectNameDisplay = SelectedSubject.Name;
+            SubjectDescriptionDisplay = SelectedSubject.Description;
+        }
+    }
 }
