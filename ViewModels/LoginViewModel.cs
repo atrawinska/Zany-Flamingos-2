@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using e_learning_application.Models;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq; // Make sure to import LINQ
 
 namespace e_learning_application.ViewModels;
@@ -51,7 +52,9 @@ public partial class LoginViewModel : ObservableObject
     private void Login()
     {
         bool isValid = false;
-        object loggedInUser = null;
+ 
+        Student student = new();
+        Teacher teacher = new();
 
         if (Role == "Student")
         {
@@ -62,7 +65,8 @@ public partial class LoginViewModel : ObservableObject
             if (loginDetails.TryGetValue(Username, out string storedPassword) && storedPassword == Password)
             {
                 isValid = true;
-                loggedInUser = _mainWindowViewModel.allStudents.FirstOrDefault(u => u.Username == Username);
+                student = _mainWindowViewModel.allStudents.FirstOrDefault(u => u.Username == Username);
+                Debug.WriteLine("LoginView: Just read "+ Role);
             }
         }
         else if (Role == "Teacher")
@@ -74,7 +78,8 @@ public partial class LoginViewModel : ObservableObject
             if (loginDetails.TryGetValue(Username, out string storedPassword) && storedPassword == Password)
             {
                 isValid = true;
-                loggedInUser = _mainWindowViewModel.allTeachers.FirstOrDefault(u => u.Username == Username);
+                teacher = _mainWindowViewModel.allTeachers.FirstOrDefault(u => u.Username == Username);
+                Debug.WriteLine("LoginView: Just read "+ Role);
             }
         }
         // Check if login was successful
@@ -82,10 +87,14 @@ public partial class LoginViewModel : ObservableObject
         {
             if (Role == "Student")
             {
+                _mainWindowViewModel.CurrentStudent = student;
+                Debug.WriteLine("LoginView: Assigned the read object "+ Role + " with name:"+ student.Name);
                 _mainWindowViewModel.SwitchToStudentView();
             }
             else if (Role == "Teacher")
             {
+                _mainWindowViewModel.CurrentTeacher = teacher;
+                Debug.WriteLine("LoginView: Assigned the read object "+ Role + " with name:" + teacher.Name);
                 _mainWindowViewModel.SwitchToTeacherView();
             }
 
@@ -96,7 +105,7 @@ public partial class LoginViewModel : ObservableObject
         {
             // Set the error message and make it visible
             ErrorMessage = "Invalid username or password!";
-            IsErrorVisible = true;
+                        IsErrorVisible = true;
         }
     }
 
