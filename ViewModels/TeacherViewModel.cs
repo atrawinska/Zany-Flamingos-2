@@ -95,6 +95,7 @@ private void AddSubject()
 {
     Subject newSubject = new(name: SubjectName, description: SubjectDescription);
     mySubjects.Add(newSubject);
+   _mainWindowViewModel.AddSubject(newSubject);
 }
 
 [RelayCommand]
@@ -102,8 +103,10 @@ private void RemoveSubject()
 {
     
     mySubjects.Remove(SelectedSubject);
-    
+    _mainWindowViewModel.RemoveSubject(SelectedSubject);
 }
+    
+
 
 [ObservableProperty]
 private bool displayVisible = false;

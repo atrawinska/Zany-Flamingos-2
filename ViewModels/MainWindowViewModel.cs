@@ -12,6 +12,12 @@ namespace e_learning_application.ViewModels
     {
         public List<Student> allStudents;
           public List<Teacher> allTeachers;
+          public List<Subject> allSubjects;
+
+           JsonReader studentReader = new("Student");
+           JsonReader teacherReader = new("Teacher");
+           JsonReader subjectReader = new("Subject");
+
 
 
         [ObservableProperty]
@@ -24,15 +30,17 @@ namespace e_learning_application.ViewModels
             // allStudents = new(); //change to read from json
             // allTeachers = new(); //change to read from json
 
-            JsonReader studentReader = new("Student");
-            allStudents = studentReader.ReadData<Student>();
-
-             JsonReader teacherReader = new("Teacher");
+            
+            allStudents = studentReader.ReadData<Student>();             
             allTeachers = teacherReader.ReadData<Teacher>();
+            allSubjects = subjectReader.ReadData<Subject>();
+
             foreach(Student x in allStudents){
                 Debug.WriteLine(x.Name);}
+
             foreach(Teacher x in allTeachers){
             Debug.WriteLine(x.Name);}
+           
 
         }
 
@@ -64,6 +72,22 @@ namespace e_learning_application.ViewModels
          public void  GoToRegister(string type){
 
             CurrentView = new RegisterView{ DataContext = new RegisterViewModel(this, type)};
+
+        }
+
+
+        public void AddSubject(Subject newSubject){
+
+             allSubjects.Add(newSubject);
+             subjectReader.SaveData(allSubjects);
+
+
+        }
+
+        public void RemoveSubject(Subject badSubject){
+
+            allSubjects.Remove(badSubject);
+            subjectReader.SaveData(allSubjects);
 
         }
 
