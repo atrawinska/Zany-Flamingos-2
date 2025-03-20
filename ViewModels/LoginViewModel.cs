@@ -43,9 +43,6 @@ public partial class LoginViewModel : ObservableObject
         Role = role;
         _mainWindowViewModel = mainWindowViewModel;
 
-
-        _students.Add(new Student { Username = "student", Password = "password" });
-        _teachers.Add(new Teacher { Username = "teacher", Password = "password" });
     }
 
     [RelayCommand]
