@@ -12,5 +12,12 @@
     "Description": "nothing",
     "TeacherId": 1595249192,
     "StudentsEnrolled": []
+  },
+  {
+    "Id": 675158,
+    "Name": "GERMAN",
+    "Description": "NO",
+    "TeacherId": -142891989,
+    "StudentsEnrolled": []
   }
 ]

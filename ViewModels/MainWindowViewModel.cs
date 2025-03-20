@@ -56,9 +56,9 @@ namespace e_learning_application.ViewModels
             CurrentView = new LoginView { DataContext = loginViewModel };
         }
 
-        public void SwitchToStudentView()
+        public void SwitchToStudentView(Student student)
         {
-            CurrentView = new StudentView { DataContext = new StudentViewModel(this) };
+            CurrentView = new StudentView { DataContext = new StudentViewModel(this, student) };
         }
 
         public void SwitchToTeacherView(Teacher teacher)

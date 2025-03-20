@@ -89,7 +89,7 @@ public partial class LoginViewModel : ObservableObject
             {
                 _mainWindowViewModel.CurrentStudent = student;
                 Debug.WriteLine("LoginView: Assigned the read object "+ Role + " with name:"+ student.Name);
-                _mainWindowViewModel.SwitchToStudentView();
+                _mainWindowViewModel.SwitchToStudentView(student);
             }
             else if (Role == "Teacher")
             {

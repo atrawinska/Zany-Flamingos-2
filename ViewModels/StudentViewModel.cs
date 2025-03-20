@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
 using e_learning_application.Views;
 using System.Diagnostics;
+using e_learning_application.Models;
 
 namespace e_learning_application.ViewModels;
 
@@ -45,25 +46,44 @@ public partial class StudentViewModel : ObservableObject
     [ObservableProperty]
     private ObservableCollection<Subject> enrolledSubjects;
 
-    public StudentViewModel(MainWindowViewModel mainWindowViewModel)
+
+    Student currentStudent;
+
+    public StudentViewModel(MainWindowViewModel mainWindowViewModel, Student student)
     {
         _mainWindowViewModel = mainWindowViewModel;
-
-
-
-        EnrolledSubjects = new ObservableCollection<Subject>();
-
-        
-
-
     //INSTEAD of assigning lists, do this because it is an observable collection
        Subjects = new ObservableCollection<Subject>(mainWindowViewModel.allSubjects);
+       currentStudent = student;
+
+       EnrolledSubjects = new();
 
 
-
-
-
+ if (currentStudent.EnrolledSubjects != null)
+    {
+        foreach (var num in currentStudent.EnrolledSubjects)
+        {
+            foreach (var sub in Subjects)
+            {
+                if (sub.Id == num)
+                {
+                    EnrolledSubjects.Add(sub);
+                }
+            }
+        }
     }
+    
+    Debug.WriteLine($"Loaded {EnrolledSubjects.Count} enrolled subjects for student {currentStudent.Name}.");
+
+
+
+       }
+
+
+
+
+
+    
 
 
     public StudentViewModel(MainWindowViewModel mainWindowViewModel, int id, string name, string username, string password, ObservableCollection<Subject> _subjects, ObservableCollection<Subject> _enrolledSubjects)
@@ -102,12 +122,14 @@ public partial class StudentViewModel : ObservableObject
     [RelayCommand]
     private void AddSubject()
     {
-        Debug.WriteLine("List clciked");
+        Debug.WriteLine("List clciked: " + SelectedSubject.Name);
 
         if (SelectedSubject is not null)
         {
 
             EnrolledSubjects.Add(SelectedSubject);
+            currentStudent.EnrolledSubjects.Add(SelectedSubject.Id);
+            _mainWindowViewModel.SaveAll();
             // Subjects.Remove(SelectedSubject);
 
         }
@@ -123,8 +145,11 @@ public partial class StudentViewModel : ObservableObject
 
             EnrolledSubjects.Remove(SelectedMySubject);
             // Subjects.Remove(SelectedSubject);
+             currentStudent.EnrolledSubjects.Remove(SelectedSubject.Id);
+            _mainWindowViewModel.SaveAll();
 
         }
+
     }
 
 
