@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "Username": "alice",
+    "Password": "pass123",
+    "Id": 2061930446,
+    "Name": "Alice Wonderland",
+    "EnrolledSubjects": []
+  },
+  {
+    "Username": "bob",
+    "Password": "pass456",
+    "Id": 2061930456,
+    "Name": "Bob Builder",
+    "EnrolledSubjects": []
+  }
+]
