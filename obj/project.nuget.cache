@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iblbj48colA=",
+  "dgSpecHash": "BJo7htEXKNs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Agnie\\Downloads\\lab2aoop\\e_learning_application\\e_learning_application.csproj",
+  "projectFilePath": "C:\\Users\\Agnie\\Downloads\\HW2\\e_learning_application\\e_learning_application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Agnie\\.nuget\\packages\\avalonia\\11.2.1\\avalonia.11.2.1.nupkg.sha512",
     "C:\\Users\\Agnie\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.22045.20230930\\avalonia.angle.windows.natives.2.1.22045.20230930.nupkg.sha512",
