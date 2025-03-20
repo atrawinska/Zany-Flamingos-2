@@ -51,8 +51,15 @@ public partial class RegisterViewModel : ObservableObject
     [RelayCommand]
     private void Register()
     {
+        HideMessage();
         Debug.Write("To the registration and its json reader type:" +Type +"was passed.");
         jsonReader = new(Type);
+
+    if (IsUsernameTaken())
+    {
+        PrintMessage("Username is already taken!");
+        return;
+    }
 
         
         
@@ -89,6 +96,36 @@ public partial class RegisterViewModel : ObservableObject
     {
         _mainWindowViewModel.GoToRoleSelection();
     }
+
+
+   private bool IsUsernameTaken()
+    {
+        bool isUsernameTaken = false;
+
+        if (Type == "Student")
+        {
+            isUsernameTaken = _mainWindowViewModel.allStudents.Any(s => s.Username == Username);
+        }
+        else if (Type == "Teacher")
+        {
+            isUsernameTaken = _mainWindowViewModel.allTeachers.Any(t => t.Username == Username);
+        }
+
+        return isUsernameTaken;
+    }
+private void PrintMessage(string message)
+{
+    ErrorMessage = message;
+    IsErrorVisible = true;
+}
+
+private void HideMessage()
+{
+    ErrorMessage = "";
+    IsErrorVisible = false;
+}
+
+    
 
 }
 

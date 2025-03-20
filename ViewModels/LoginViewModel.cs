@@ -6,105 +6,115 @@ using System.Linq; // Make sure to import LINQ
 
 namespace e_learning_application.ViewModels;
 public partial class LoginViewModel : ObservableObject
-    {
-        [ObservableProperty]
-        private string username;
+{
+    Dictionary<string, string> loginDetails;
 
-        [ObservableProperty]
-        private string password;
+    [ObservableProperty]
+    private string username;
 
-        [ObservableProperty]
-        private string role;
+    [ObservableProperty]
+    private string password;
 
-        [ObservableProperty]
-        private string errorMessage; // For holding the error message
+    [ObservableProperty]
+    private string role;
 
-        [ObservableProperty]
-        private bool isErrorVisible; // For controlling visibility of the error message
+    [ObservableProperty]
+    private string errorMessage; // For holding the error message
 
-        private readonly MainWindowViewModel _mainWindowViewModel;
+    [ObservableProperty]
+    private bool isErrorVisible; // For controlling visibility of the error message
 
-        // Use the Models
-        private readonly List<Student> _students = new List<Student>
+    private readonly MainWindowViewModel _mainWindowViewModel;
+
+    // Use the Models
+    private readonly List<Student> _students = new List<Student>
         {
             new Student { Username = "student", Password = "password" }
         };
 
-        private readonly List<Teacher> _teachers = new List<Teacher>
+    private readonly List<Teacher> _teachers = new List<Teacher>
         {
             new Teacher { Username = "teacher", Password = "password" }
         };
 
-        public LoginViewModel(string role, MainWindowViewModel mainWindowViewModel)
-        {
-            Role = role;
-            _mainWindowViewModel = mainWindowViewModel;
+    public LoginViewModel(string role, MainWindowViewModel mainWindowViewModel)
+    {
+        Role = role;
+        _mainWindowViewModel = mainWindowViewModel;
 
-            _students.Add(new Student { Username = "student", Password = "password" });
-            _teachers.Add(new Teacher { Username = "teacher", Password = "password" });
+
+        _students.Add(new Student { Username = "student", Password = "password" });
+        _teachers.Add(new Teacher { Username = "teacher", Password = "password" });
+    }
+
+    [RelayCommand]
+    private void Login()
+    {
+        bool isValid = false;
+        object loggedInUser = null;
+
+        if (Role == "Student")
+        {
+            // Prepare loginDetails for students
+            loginDetails = _mainWindowViewModel.allStudents.ToDictionary(u => u.Username, u => u.Password);
+
+            // Check if username exists and the password matches
+            if (loginDetails.TryGetValue(Username, out string storedPassword) && storedPassword == Password)
+            {
+                isValid = true;
+                loggedInUser = _mainWindowViewModel.allStudents.FirstOrDefault(u => u.Username == Username);
+            }
         }
-
-        [RelayCommand]
-        private void Login()
+        else if (Role == "Teacher")
         {
-            bool isValid = false;
+            // Prepare loginDetails for teachers
+            loginDetails = _mainWindowViewModel.allTeachers.ToDictionary(u => u.Username, u => u.Password);
 
-            // Validate credentials based on role
+            // Check if username exists and the password matches
+            if (loginDetails.TryGetValue(Username, out string storedPassword) && storedPassword == Password)
+            {
+                isValid = true;
+                loggedInUser = _mainWindowViewModel.allTeachers.FirstOrDefault(u => u.Username == Username);
+            }
+        }
+        // Check if login was successful
+        if (isValid)
+        {
             if (Role == "Student")
             {
-                var student = _students.FirstOrDefault(s => s.Username == Username && s.Password == Password);
-                isValid = student != null;
+                _mainWindowViewModel.SwitchToStudentView();
             }
             else if (Role == "Teacher")
             {
-                var teacher = _teachers.FirstOrDefault(t => t.Username == Username && t.Password == Password);
-                isValid = teacher != null;
+                _mainWindowViewModel.SwitchToTeacherView();
             }
 
-            // Check if login was successful
-            if (isValid)
-            {
-                if (Role == "Student")
-                {
-                    _mainWindowViewModel.SwitchToStudentView();
-                }
-                else if (Role == "Teacher")
-                {
-                    _mainWindowViewModel.SwitchToTeacherView();
-                }
-
-                // Hide error message on successful login
-                IsErrorVisible = false;
-            }
-            else
-            {
-                // Set the error message and make it visible
-                ErrorMessage = "Invalid username or password!";
-                IsErrorVisible = true;
-            }
+            // Hide error message on successful login
+            IsErrorVisible = false;
         }
-
-
-
-[RelayCommand]
-private void Back()
-{
-    _mainWindowViewModel.GoToRoleSelection();
-}
-
-
-
-
-[RelayCommand]
-private void Register()
-{
-    _mainWindowViewModel.GoToRegister(role);
-}
-
-
-
-
-
-
+        else
+        {
+            // Set the error message and make it visible
+            ErrorMessage = "Invalid username or password!";
+            IsErrorVisible = true;
+        }
     }
-    
+
+
+
+    [RelayCommand]
+    private void Back()
+    {
+        _mainWindowViewModel.GoToRoleSelection();
+    }
+
+
+
+
+    [RelayCommand]
+    private void Register()
+    {
+        _mainWindowViewModel.GoToRegister(role);
+    }
+
+}

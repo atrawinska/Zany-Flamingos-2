@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -11,12 +12,15 @@ namespace e_learning_application.ViewModels
     public partial class MainWindowViewModel : ObservableObject
     {
         public List<Student> allStudents;
+        public Dictionary<string, Student> allStudentsMap { get; private set; } = new Dictionary<string, Student>();
           public List<Teacher> allTeachers;
+          public Dictionary<string, Teacher> allTeachersMap { get; private set; } = new Dictionary<string, Teacher>();
           public List<Subject> allSubjects;
 
-           JsonReader studentReader = new("Student");
-           JsonReader teacherReader = new("Teacher");
-           JsonReader subjectReader = new("Subject");
+
+
+           public Student CurrentStudent {get; set;}
+           public Teacher CurrentTeacher {get; set;}
 
 
 
@@ -30,6 +34,10 @@ namespace e_learning_application.ViewModels
             // allStudents = new(); //change to read from json
             // allTeachers = new(); //change to read from json
 
+            JsonReader studentReader = new("Student");
+           JsonReader teacherReader = new("Teacher");
+           JsonReader subjectReader = new("Subject");
+
             
             allStudents = studentReader.ReadData<Student>();             
             allTeachers = teacherReader.ReadData<Teacher>();
@@ -40,6 +48,9 @@ namespace e_learning_application.ViewModels
 
             foreach(Teacher x in allTeachers){
             Debug.WriteLine(x.Name);}
+
+            allStudentsMap = allStudents.ToDictionary(s => s.Username, s => s);
+            allTeachersMap = allTeachers.ToDictionary(t => t.Username, t => t);
            
 
         }
@@ -78,6 +89,8 @@ namespace e_learning_application.ViewModels
 
         public void AddSubject(Subject newSubject){
 
+           JsonReader subjectReader = new("Subject");
+
              allSubjects.Add(newSubject);
              subjectReader.SaveData(allSubjects);
 
@@ -86,9 +99,20 @@ namespace e_learning_application.ViewModels
 
         public void RemoveSubject(Subject badSubject){
 
+            
+           JsonReader subjectReader = new("Subject");
             allSubjects.Remove(badSubject);
             subjectReader.SaveData(allSubjects);
 
+        }
+
+        public void SaveAll(){
+        JsonReader studentReader = new("Student");
+           JsonReader teacherReader = new("Teacher");
+           JsonReader subjectReader = new("Subject");
+            subjectReader.SaveData(allSubjects);
+            teacherReader.SaveData(allTeachers);
+             studentReader.SaveData(allStudents);
         }
 
 
