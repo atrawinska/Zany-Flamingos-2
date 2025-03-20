@@ -1,0 +1,178 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/mikolajkluba/Desktop/Avalonia_Projects/Zany-Flamingos-AOOP_lab2/e_learning_application.Test/e_learning_application.Test/e_learning_application.Test.csproj": {}
+  },
+  "projects": {
+    "/Users/mikolajkluba/Desktop/Avalonia_Projects/Zany-Flamingos-AOOP_lab2/e_learning_application.Test/e_learning_application.Test/e_learning_application.Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/mikolajkluba/Desktop/Avalonia_Projects/Zany-Flamingos-AOOP_lab2/e_learning_application.Test/e_learning_application.Test/e_learning_application.Test.csproj",
+        "projectName": "e_learning_application.Test",
+        "projectPath": "/Users/mikolajkluba/Desktop/Avalonia_Projects/Zany-Flamingos-AOOP_lab2/e_learning_application.Test/e_learning_application.Test/e_learning_application.Test.csproj",
+        "packagesPath": "/Users/mikolajkluba/.nuget/packages/",
+        "outputPath": "/Users/mikolajkluba/Desktop/Avalonia_Projects/Zany-Flamingos-AOOP_lab2/e_learning_application.Test/e_learning_application.Test/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/mikolajkluba/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/mikolajkluba/Desktop/Avalonia_Projects/Zany-Flamingos-AOOP_lab2/e_learning_application/e_learning_application.csproj": {
+                "projectPath": "/Users/mikolajkluba/Desktop/Avalonia_Projects/Zany-Flamingos-AOOP_lab2/e_learning_application/e_learning_application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.12.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.72, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.9.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/mikolajkluba/Desktop/Avalonia_Projects/Zany-Flamingos-AOOP_lab2/e_learning_application/e_learning_application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/mikolajkluba/Desktop/Avalonia_Projects/Zany-Flamingos-AOOP_lab2/e_learning_application/e_learning_application.csproj",
+        "projectName": "e_learning_application",
+        "projectPath": "/Users/mikolajkluba/Desktop/Avalonia_Projects/Zany-Flamingos-AOOP_lab2/e_learning_application/e_learning_application.csproj",
+        "packagesPath": "/Users/mikolajkluba/.nuget/packages/",
+        "outputPath": "/Users/mikolajkluba/Desktop/Avalonia_Projects/Zany-Flamingos-AOOP_lab2/e_learning_application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/mikolajkluba/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Avalonia": {
+              "target": "Package",
+              "version": "[11.2.1, )"
+            },
+            "Avalonia.Desktop": {
+              "target": "Package",
+              "version": "[11.2.1, )"
+            },
+            "Avalonia.Diagnostics": {
+              "target": "Package",
+              "version": "[11.2.1, )"
+            },
+            "Avalonia.Fonts.Inter": {
+              "target": "Package",
+              "version": "[11.2.1, )"
+            },
+            "Avalonia.Themes.Fluent": {
+              "target": "Package",
+              "version": "[11.2.1, )"
+            },
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.2.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
