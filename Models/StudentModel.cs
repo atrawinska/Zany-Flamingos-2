@@ -6,7 +6,15 @@ namespace e_learning_application.Models
     public class Student
     {
         public string Username { get; set; }
-        public string Password { get; set; }
+
+        private string password;
+
+        public string Password { get{
+            return password; //hashed
+        }
+
+        set{ password = value;
+        } }
 
         public int Id { get; set; } // Unique identifier for the student
         public string Name { get; set; } // Full name of the student
@@ -39,6 +47,8 @@ namespace e_learning_application.Models
             EnrolledSubjects = enrolledSubjects ?? new List<int>(); // Ensures it's never null
         }
 
+
+    
 
 
 

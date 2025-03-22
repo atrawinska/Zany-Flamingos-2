@@ -19,7 +19,7 @@
 
 
 
-         <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" IsVisible="{Binding IsErrorVisible, Mode=TwoWay}" Margin="10,10,10,0"/>
+         <TextBlock Text="{Binding ErrorMessage}" HorizontalAlignment="Center" Foreground="Pink" IsVisible="{Binding IsErrorVisible, Mode=TwoWay}" Margin="10,10,10,0"/>
           <Button Content="Back" Command="{Binding BackCommand}" HorizontalAlignment="Center" FontSize="10" Background="rgb(36, 56, 57)"/>
          
 

@@ -26,8 +26,11 @@
 
 <StackPanel Orientation="Vertical" Margin="30" >
         <TextBlock FontSize="20" Text="My subjects" VerticalAlignment="Center"   HorizontalAlignment="Center"  Foreground="White" Margin="30,10,30,10"/>
-        <ListBox Margin="30" FontSize="20" Padding="15,10,15, 10"  ItemsSource="{Binding MySubjects}"  SelectedItem="{Binding SelectedSubject}"  />
+        <ListBox Margin="30" FontSize="20" Padding="15,10,15, 10"  ItemsSource="{Binding MySubjects}" 
+    
+         SelectedItem="{Binding SelectedSubject}"  />
                   <Button Content="Display" Command="{Binding DisplaySubjectCommand}"
+                  
                   
                    HorizontalAlignment="Center" FontSize="15" Background="rgb(36, 56, 57)"/>
 </StackPanel> 

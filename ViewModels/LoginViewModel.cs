@@ -43,6 +43,9 @@ public partial class LoginViewModel : ObservableObject
         Role = role;
         _mainWindowViewModel = mainWindowViewModel;
 
+
+        _students.Add(new Student { Username = "student", Password = "password" });
+        _teachers.Add(new Teacher { Username = "teacher", Password = "password" });
     }
 
     [RelayCommand]
@@ -59,8 +62,9 @@ public partial class LoginViewModel : ObservableObject
             loginDetails = _mainWindowViewModel.allStudents.ToDictionary(u => u.Username, u => u.Password);
 
             // Check if username exists and the password matches
-            if (loginDetails.TryGetValue(Username, out string storedPassword) && storedPassword == Password)
+            if (loginDetails.TryGetValue(Username, out string storedPassword) && PasswordHasher.VerifyPassword(Password, storedPassword))         
             {
+                
                 isValid = true;
                 student = _mainWindowViewModel.allStudents.FirstOrDefault(u => u.Username == Username);
                 Debug.WriteLine("LoginView: Just read "+ Role);

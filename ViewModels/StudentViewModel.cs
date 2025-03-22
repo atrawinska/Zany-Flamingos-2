@@ -18,6 +18,20 @@ public partial class StudentViewModel : ObservableObject
     [ObservableProperty]
     private Subject? selectedMySubject;
 
+    [ObservableProperty]
+    private bool displayVisible = false;
+
+
+    
+    [ObservableProperty]
+    private string? subjectName;
+
+        [ObservableProperty]
+    private string? subjectDescription;
+
+        [ObservableProperty]
+    private string? subjectTeacher;
+
     // Unique identifier for the student
     public int Id { get; set; }
 
@@ -46,7 +60,7 @@ public partial class StudentViewModel : ObservableObject
     [ObservableProperty]
     private ObservableCollection<Subject> enrolledSubjects;
 
-
+        [ObservableProperty]
     Student currentStudent;
 
     public StudentViewModel(MainWindowViewModel mainWindowViewModel, Student student)
@@ -124,13 +138,19 @@ public partial class StudentViewModel : ObservableObject
     {
         Debug.WriteLine("List clciked: " + SelectedSubject.Name);
 
-        if (SelectedSubject is not null)
+        if (SelectedSubject is not null && !EnrolledSubjects.Contains(SelectedSubject))
         {
+            
 
             EnrolledSubjects.Add(SelectedSubject);
-            currentStudent.EnrolledSubjects.Add(SelectedSubject.Id);
+            CurrentStudent.EnrolledSubjects.Add(SelectedSubject.Id);
             _mainWindowViewModel.SaveAll();
+           //  DisplaySubject(SelectedSubject);
             // Subjects.Remove(SelectedSubject);
+
+            //display
+
+
 
         }
     }
@@ -138,19 +158,81 @@ public partial class StudentViewModel : ObservableObject
     [RelayCommand]
     private void RemoveSubject()
     {
-        Debug.WriteLine("List clciked");
+        if(SelectedMySubject!=null){
+        Debug.WriteLine("List clciked, chosen: "+ SelectedMySubject.Id.ToString());
+        int id = 0;
 
-        if (SelectedMySubject is not null)
-        {
+        foreach(var s in CurrentStudent.EnrolledSubjects){
+            Debug.WriteLine("Went: "+ s.ToString());
+
+            if(s == SelectedMySubject.Id){
+                id = s;
+                Debug.WriteLine("Found: "+ s.ToString());                               
+
+            }
+        }
+        if(id!=0){
+            Debug.WriteLine("Removed: "+ SelectedMySubject.Id.ToString());
+               CurrentStudent.EnrolledSubjects?.Remove(SelectedMySubject.Id);}
+
+       
 
             EnrolledSubjects.Remove(SelectedMySubject);
             // Subjects.Remove(SelectedSubject);
-             currentStudent.EnrolledSubjects.Remove(SelectedSubject.Id);
+            //this has problem with null reference
+          //  currentStudent.EnrolledSubjects.Remove(SelectedMySubject.Id);
+           //  currentStudent.EnrolledSubjects.Remove((int)SelectedMySubject.Id);
+        //   currentStudent.EnrolledSubjects?.Remove(SelectedMySubject.Id);
             _mainWindowViewModel.SaveAll();
-
         }
 
+        
+  
     }
+
+    ///display subject
+    
+    private void Display(Subject subject){
+
+        DisplayVisible = true;
+        SubjectName = subject.Name;
+        SubjectDescription = subject.Description;
+
+        foreach(var teacher in _mainWindowViewModel.allTeachers){
+
+            if(teacher.Id == subject.TeacherId){
+                SubjectTeacher = teacher.Name;
+            }
+            else{
+                SubjectTeacher = "Unknown";
+            }
+        }
+        
+
+
+    }
+
+
+ 
+ [RelayCommand]
+ private void DisplaySubject(){
+
+    if(SelectedSubject != null){
+        Display(SelectedSubject);
+    }
+
+ }
+
+
+
+  [RelayCommand]
+ private void DisplayMySubject(){
+
+    if(SelectedMySubject != null){
+        Display(SelectedMySubject);
+    }
+
+ }
 
 
 
